@@ -3,7 +3,9 @@ package com.das.user;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.das.componentbase.ServiceFactory;
+import com.das.componentbase.router.Router_Pools;
 import com.das.god_base.network.DObserver;
 import com.das.god_base.network.RxDUtils;
 
@@ -13,6 +15,7 @@ import com.trello.rxlifecycle4.components.support.RxAppCompatActivity;
 import io.reactivex.rxjava3.core.Observable;
 import okhttp3.ResponseBody;
 
+@Route(path = Router_Pools.User_MainActivity)
 public class MainActivity extends BaseActivity {
 
     @Override

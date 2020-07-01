@@ -23,7 +23,11 @@ android {
             applicationId "com.das.home"
         }
 
-
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -54,10 +58,9 @@ android {
         }
     }
 
-    dataBinding {
-        enabled = true
+    buildFeatures{
+        dataBinding = true
     }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -77,5 +80,5 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintlayout_v"
     implementation project(path: ':service:god_base')
 
-
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
 }
