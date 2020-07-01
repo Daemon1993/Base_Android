@@ -6,30 +6,35 @@ if(isRunAlone.toBoolean()){
 }
 
 
-
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
 
     defaultConfig {
-
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
 
         if (isRunAlone.toBoolean()) {
             // 单独调试时添加 applicationId ，集成调试时移除
-            applicationId "com.das.home"
+            applicationId "com.das.user"
         }
-
 
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
 
-    resourcePrefix "home_"
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+    resourcePrefix "user_"
     sourceSets {
         main {
             // 单独调试与集成调试时使用不同的 AndroidManifest.xml 文件
@@ -46,14 +51,6 @@ android {
         }
     }
 
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -62,16 +59,13 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "androidx.appcompat:appcompat:$rootProject.appcompat_v"
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintlayout_v"
     implementation project(path: ':componentbase')
-
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-
-    implementation "androidx.appcompat:appcompat:$rootProject.appcompat_v"
-    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintlayout_v"
     implementation project(path: ':service:god_base')
-
 
 }

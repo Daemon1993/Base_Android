@@ -1,3 +1,5 @@
+include ':user'
+include ':componentbase'
 include ':service:god_base'
 include ':home'
 include ':app'

@@ -20,10 +20,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.das.componentbase.ServiceFactory;
 import com.das.god_base.network.DObserver;
 import com.das.god_base.network.RxDUtils;
 import com.das.home.network.DasService;
 import com.das.home.network.RetrofitHandler;
+import com.das.home.service.HomeService;
 import com.trello.rxlifecycle4.components.support.RxAppCompatActivity;
 
 import java.io.IOException;
@@ -47,6 +49,8 @@ public class MainActivity extends RxAppCompatActivity {
 
                     }
                 });
+
+
 
     }
 }
