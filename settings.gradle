@@ -1,0 +1,4 @@
+include ':service:god_base'
+include ':home'
+include ':app'
+rootProject.name = "v1r1"
