@@ -9,7 +9,7 @@ public class HomeBaseInitDo {
 
     public static void init(Application application) {
 
-        ServiceFactory.getInstance().setHomeService(new HomeService());
+
 
     }
 }

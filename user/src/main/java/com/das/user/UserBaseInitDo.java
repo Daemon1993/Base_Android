@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.das.componentbase.ServiceFactory;
+import com.das.god_base.Dlog;
 
 public class UserBaseInitDo {
 
@@ -11,7 +12,7 @@ public class UserBaseInitDo {
 
 
         boolean homeOk = ServiceFactory.getInstance().getHomeService().isHomeOk();
-        Log.d("User","homeok "+homeOk);
+        Dlog.d("homeok "+homeOk);
 
 
     }

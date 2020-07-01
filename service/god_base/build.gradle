@@ -54,5 +54,5 @@ dependencies {
     api 'com.trello.rxlifecycle4:rxlifecycle-android:4.0.0'
 // If you want pre-written Activities and Fragments you can subclass as providers
     api 'com.trello.rxlifecycle4:rxlifecycle-components:4.0.0'
-
+    api 'com.github.zhaokaiqiang.klog:library:1.6.0'
 }
