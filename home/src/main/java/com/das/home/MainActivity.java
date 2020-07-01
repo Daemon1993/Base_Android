@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -17,12 +20,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.das.god_base.network.DObserver;
+import com.das.god_base.network.RxDUtils;
 import com.das.home.network.DasService;
 import com.das.home.network.RetrofitHandler;
+import com.trello.rxlifecycle4.components.support.RxAppCompatActivity;
 
 import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends RxAppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,26 +36,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.home_activity_main2);
 
 
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(DasService.BASEURL)
-                .build();
-
-
         DasService dasService = RetrofitHandler.getInstance().create(DasService.class);
         Observable<ResponseBody> test = dasService.test("http://www.baidu.com");
 
-        @NonNull Disposable subscribe = test.observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<ResponseBody>() {
+          RxDUtils.doRxAction(test)
+                .compose(bindToLifecycle())
+                .subscribe(new DObserver<ResponseBody>() {
                     @Override
-                    public void accept(ResponseBody s) throws Throwable {
+                    public void onSuccess(ResponseBody response) {
 
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Throwable {
-                        Log.d("AAA",throwable.getLocalizedMessage());
                     }
                 });
 

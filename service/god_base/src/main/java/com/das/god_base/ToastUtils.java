@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Toast;
 
 
@@ -25,6 +26,10 @@ public class ToastUtils {
             if (mToast != null) {
                 mToast.cancel();
             }
+            if(BaseInitGod.application==null){
+                Log.e("ToastUtils","application is null");
+                return;
+            }
             String message = (String) msg.obj;
             mToast = Toast.makeText(BaseInitGod.application, message, msg.arg2);
             mToast.show();
@@ -35,6 +40,7 @@ public class ToastUtils {
         handler.sendMessage(handler.obtainMessage(0, 0, duration, message));
     }
     public static void toast(String message) {
+
         if (!TextUtils.isEmpty(message)) {
             toast(message, Toast.LENGTH_SHORT);
         }
