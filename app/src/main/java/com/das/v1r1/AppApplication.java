@@ -5,8 +5,7 @@ import android.app.Application;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.das.componentbase.base.AppConfig;
 import com.das.componentbase.base.BaseApp;
-import com.das.home.HomeBaseInitDo;
-import com.das.user.UserBaseInitDo;
+
 
 public class AppApplication extends BaseApp {
 
