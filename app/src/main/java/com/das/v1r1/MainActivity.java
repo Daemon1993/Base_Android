@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
          viewDataBinding.btDo.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-                 ARouter.getInstance().build(Router_Pools.User_MainActivity).navigation();
+                 ARouter.getInstance().build(Router_Pools.User_SplashActivity).navigation();
              }
          });
     }

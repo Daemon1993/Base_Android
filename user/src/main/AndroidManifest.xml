@@ -3,6 +3,6 @@
 
 
     <application>
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".SplashActivity" android:theme="@style/user_SplashTheme"/>
     </application>
 </manifest>
