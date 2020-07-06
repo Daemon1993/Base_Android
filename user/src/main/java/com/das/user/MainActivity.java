@@ -1,5 +1,7 @@
 package com.das.user;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -18,11 +20,13 @@ import okhttp3.ResponseBody;
 @Route(path = Router_Pools.User_MainActivity)
 public class MainActivity extends BaseActivity {
 
+    public static void openActivity(Context context){
+        context.startActivity(new Intent(context,MainActivity.class));
+    }
+
     @Override
     protected void onCreateNew(Bundle savedInstanceState) {
         setContentView(R.layout.user_activity_main);
-
-
 
     }
 }

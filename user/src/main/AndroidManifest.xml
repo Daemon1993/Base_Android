@@ -1,8 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.das.user">
 
-
     <application>
-        <activity android:name=".SplashActivity" android:theme="@style/user_SplashTheme"/>
+        <activity android:name=".LoginActivity"></activity>
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/user_SplashTheme" />
+        <activity android:name=".MainActivity" />
     </application>
+
 </manifest>
