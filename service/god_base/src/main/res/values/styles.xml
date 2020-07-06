@@ -1,18 +1,12 @@
 <resources>
-    <!-- Base application theme. -->
-<!--    <style name="user_AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
-<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
-<!--        <item name="colorPrimary">@color/home_colorPrimary</item>-->
-<!--        <item name="colorPrimaryDark">@color/home_colorPrimaryDark</item>-->
-<!--        <item name="colorAccent">@color/home_colorAccent</item>-->
-<!--    </style>-->
-    <!--    <style name="home_AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
-    <!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
-    <!--        <item name="colorPrimary">@color/home_colorPrimary</item>-->
-    <!--        <item name="colorPrimaryDark">@color/home_colorPrimaryDark</item>-->
-    <!--        <item name="colorAccent">@color/home_colorAccent</item>-->
-    <!--    </style>-->
 
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/user_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/user_colorPrimaryDark</item>
+        <item name="colorAccent">@color/user_colorAccent</item>
+    </style>
 
 
 

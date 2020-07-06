@@ -66,16 +66,16 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "androidx.appcompat:appcompat:$rootProject.appcompat_v"
-    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintlayout_v"
-    implementation project(path: ':componentbase')
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+
     implementation project(path: ':service:god_base')
-
-
+    implementation project(path: ':componentbase')
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+
+
 
 }

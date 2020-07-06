@@ -23,7 +23,7 @@ public class SplashActivity extends BaseActivity {
 
                 DLog.d("--------------");
 
-                MainActivity.openActivity(SplashActivity.this);
+                LoginActivity.openActivity(SplashActivity.this);
 
             }
         },2000);

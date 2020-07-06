@@ -25,5 +25,6 @@ public class MainActivity extends AppCompatActivity {
                  ARouter.getInstance().build(Router_Pools.User_SplashActivity).navigation();
              }
          });
+
     }
 }

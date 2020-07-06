@@ -76,8 +76,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
 
-    implementation "androidx.appcompat:appcompat:$rootProject.appcompat_v"
-    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintlayout_v"
+
     implementation project(path: ':service:god_base')
 
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'

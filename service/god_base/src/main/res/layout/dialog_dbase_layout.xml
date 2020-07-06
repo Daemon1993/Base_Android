@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/qb_px_260"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_bg__white">
+
+
+
+    <TextView
+        android:id="@+id/tv_ts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/qb_px_15"
+        android:text="提示"
+        android:textStyle="bold"
+        android:textSize="@dimen/qb_px_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+         />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/qb_px_10"
+        android:layout_marginRight="@dimen/qb_px_10"
+        android:gravity="center"
+        android:minHeight="@dimen/qb_px_75"
+        android:padding="@dimen/qb_px_8"
+        android:textSize="@dimen/qb_px_14"
+        android:text="AAA"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_ts" />
+
+
+    <View
+        android:id="@+id/line_bt"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/base_gray1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_content" />
+
+
+    <View
+        android:id="@+id/v_center"
+        android:layout_width="1dp"
+        android:layout_height="@dimen/qb_px_50"
+        android:background="@color/base_gray1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line_bt" />
+
+
+    <TextView
+        android:id="@+id/tv_left"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="取消"
+
+        app:layout_constraintBottom_toBottomOf="@id/v_center"
+        app:layout_constraintEnd_toStartOf="@id/v_center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/v_center" />
+
+    <TextView
+        android:id="@+id/tv_right"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="确认"
+        android:textColor="@color/base_blue0"
+        app:layout_constraintBottom_toBottomOf="@id/v_center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/v_center"
+        app:layout_constraintTop_toTopOf="@id/v_center" />
+
+    <TextView
+        android:id="@+id/another_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/qb_px_50"
+        android:text="知道了"
+        android:gravity="center"
+        android:visibility="gone"
+        android:textColor="@color/base_blue0"
+        app:layout_constraintTop_toBottomOf="@id/line_bt"
+        app:layout_constraintTop_toTopOf="@id/v_center"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

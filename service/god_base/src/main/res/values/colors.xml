@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <color name="user_colorPrimary">#6200EE</color>
+    <color name="user_colorPrimaryDark">#3700B3</color>
+    <color name="user_colorAccent">#03DAC5</color>
+
+
+    <color name="base_white">#ffffff</color>
+    <color name="base_gray0">#EEEEEE</color>
+    <color name="base_gray1">#E5E5E5</color>
+    <color name="base_blue0">#006DF1</color>
 </resources>
