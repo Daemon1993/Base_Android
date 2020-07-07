@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".user_center.SetActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/layout_top" />
+
+            <include
+                android:id="@+id/cl_update_pwd"
+                layout="@layout/layout_base_textview_style1" />
+
+            <include
+                android:id="@+id/cl_server_xy"
+                layout="@layout/layout_base_textview_style1" />
+
+            <include
+                android:id="@+id/cl_clear_cache"
+                layout="@layout/layout_base_textview_style1" />
+
+            <include
+                android:id="@+id/cl_about"
+                layout="@layout/layout_base_textview_style1" />
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/qb_px_44"
+            android:layout_alignParentBottom="true"
+            android:background="@color/base_white"
+            android:gravity="center"
+            android:text="退出登录"
+            android:textColor="@color/base_blue00" />
+    </RelativeLayout>
+</layout>

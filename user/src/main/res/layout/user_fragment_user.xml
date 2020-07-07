@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".user_center.UserFragment">
+
+        <include
+            android:id="@+id/cl_top1"
+            layout="@layout/layout_top"
+
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_top_main"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/qb_px_160"
+            android:background="@color/base_white">
+
+            <ImageView
+                android:id="@+id/iv_icon"
+                android:layout_width="@dimen/qb_px_80"
+                android:layout_height="@dimen/qb_px_80"
+                android:layout_marginLeft="@dimen/qb_px_35"
+                android:layout_marginTop="@dimen/qb_px_45"
+                android:src="@drawable/user_base_picon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                style="@style/base_text_style1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/qb_px_40"
+                android:drawableLeft="@drawable/login_user"
+                android:drawablePadding="@dimen/qb_px_4"
+                android:text="name"
+                app:layout_constraintStart_toEndOf="@id/iv_icon"
+                app:layout_constraintTop_toTopOf="@id/iv_icon" />
+
+            <TextView
+                android:id="@+id/tv_id"
+                style="@style/base_text_style1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/qb_px_11"
+                android:drawableLeft="@drawable/icon_id"
+                android:drawablePadding="@dimen/qb_px_4"
+                android:text="id"
+                app:layout_constraintStart_toStartOf="@id/tv_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_name" />
+
+            <TextView
+                android:id="@+id/tv_phone"
+                style="@style/base_text_style1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/qb_px_11"
+                android:drawableLeft="@drawable/icon_phone"
+                android:drawablePadding="@dimen/qb_px_4"
+                android:text="phone"
+                app:layout_constraintStart_toStartOf="@id/tv_id"
+                app:layout_constraintTop_toBottomOf="@id/tv_id" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <include
+            android:id="@+id/cl_yq_user"
+            layout="@layout/layout_base_textview_style1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <include
+            android:id="@+id/cl_set"
+            layout="@layout/layout_base_textview_style1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</layout>

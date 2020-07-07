@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.das.componentbase.ServiceFactory;
 import com.das.componentbase.router.Router_Pools;
 import com.das.v1r1.databinding.ActivityMainBinding;
 
@@ -25,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
                  ARouter.getInstance().build(Router_Pools.User_SplashActivity).navigation();
              }
          });
+
+
+        ServiceFactory.getInstance().getiLoginService().initAction();
+
 
     }
 }

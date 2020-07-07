@@ -10,11 +10,13 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.das.god_base.R;
-import com.das.god_base.log.DLog;
+
+import com.socks.library.KLog;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -55,7 +57,7 @@ public class DBaseDialog extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        DLog.e("onCreateView "+leftListener+" "+rightListener);
+        KLog.e("onCreateView "+leftListener+" "+rightListener);
 
 
         View view = inflater.inflate(R.layout.dialog_dbase_layout, null, false);
@@ -93,7 +95,7 @@ public class DBaseDialog extends DialogFragment {
             @Override
             public void onClick(View view) {
                 dismiss();
-                DLog.e("  "+rightListener);
+                KLog.e("  "+rightListener);
                 if (rightListener != null) {
                     rightListener.onClick(view);
                 }
@@ -129,13 +131,16 @@ public class DBaseDialog extends DialogFragment {
     public void onStart() {
 
 
-        DLog.e("onStart");
+        KLog.e("onStart");
 
         //设置DialogFragment所依附的window背景透明（不设置会有一块灰色的背景）
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         //设置dialog的位置（自定义的布局并没有显示在window的中间，没达到我想要的效果）
-        getDialog().getWindow().setGravity(Gravity.CENTER);
-        int dimensionPixelOffset = getResources().getDimensionPixelOffset(R.dimen.qb_px_260);
+        getDialog().getWindow().setGravity(Gravity.TOP);
+
+        WindowManager.LayoutParams lp = getDialog().getWindow().getAttributes();
+        lp.y= getResources().getDimensionPixelOffset(R.dimen.qb_px_167);
+        int dimensionPixelOffset = getResources().getDimensionPixelOffset(R.dimen.qb_px_295);
         //设置Window的大小，想要自定义Dialog的位置摆放正确，将Window的大小保持和自定义Dialog的大小一样
         getDialog().getWindow().setLayout(dimensionPixelOffset, ConstraintLayout.LayoutParams.WRAP_CONTENT);
 
@@ -148,7 +153,7 @@ public class DBaseDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        DLog.e("onCreateDialog ");
+        KLog.e("onCreateDialog ");
         return super.onCreateDialog(savedInstanceState);
     }
 }

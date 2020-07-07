@@ -77,7 +77,7 @@ dependencies {
 
 
 
-    implementation project(path: ':service:god_base')
+    api project(path: ':service:god_base')
 
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
 }

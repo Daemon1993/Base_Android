@@ -6,8 +6,16 @@
     <color name="user_colorAccent">#03DAC5</color>
 
 
+
     <color name="base_white">#ffffff</color>
     <color name="base_gray0">#EEEEEE</color>
     <color name="base_gray1">#E5E5E5</color>
+    <color name="base_gray2">#CCCCCC</color>
+    <color name="base_gray3">#333333 </color>
+    <color name="base_gray4">#000000 </color>
+
+
+    <color name="base_blue00">#0058D5 </color>
+
     <color name="base_blue0">#006DF1</color>
 </resources>

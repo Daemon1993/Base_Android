@@ -23,30 +23,32 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <EditText
+        <com.das.god_base.view.LoginStyleEditText
             android:id="@+id/et_user"
             android:layout_width="@dimen/qb_px_295"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/qb_px_63"
-            android:drawableLeft="@drawable/login_user"
+            app:ic_left="@drawable/login_user"
             android:hint="@string/user_login_user_hint"
             android:textSize="@dimen/base_text_size0"
-            android:textCursorDrawable="@color/base_gray0"
+            android:textColorHint="@color/base_gray2"
+            android:textColor="@color/base_gray2"
             app:layout_constraintEnd_toEndOf="parent"
             android:drawablePadding="@dimen/qb_px_8"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_logo" />
 
-        <EditText
+        <com.das.god_base.view.LoginStyleEditText
             android:id="@+id/et_pwd"
             android:layout_width="@dimen/qb_px_295"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/qb_px_14"
-            android:drawableLeft="@drawable/login_user"
-            android:hint="@string/user_login_user_hint"
+            app:ic_left="@drawable/login_pwd"
+            android:textColorHint="@color/base_gray2"
+            android:textColor="@color/base_gray2"
+            android:hint="@string/user_login_pwd_hint"
             android:drawablePadding="@dimen/qb_px_8"
             android:textSize="@dimen/base_text_size0"
-            android:textCursorDrawable="@color/base_gray0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/et_user" />

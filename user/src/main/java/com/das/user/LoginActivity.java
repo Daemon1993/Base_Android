@@ -20,6 +20,11 @@ public class LoginActivity extends BaseActivity {
     UserActivityLoginBinding viewDataBinding;
 
     @Override
+    protected void initLazyAction() {
+
+    }
+
+    @Override
     protected void onCreateNew(Bundle savedInstanceState) {
 
          viewDataBinding = DataBindingUtil.setContentView(this, R.layout.user_activity_login);
@@ -27,7 +32,8 @@ public class LoginActivity extends BaseActivity {
          viewDataBinding.btLogin.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-                 showBaseDialog("Daemon",null,null);
+//                 showBaseDialog("Daemon",null,null);
+                 MainActivity.openActivity(LoginActivity.this);
              }
          });
     }

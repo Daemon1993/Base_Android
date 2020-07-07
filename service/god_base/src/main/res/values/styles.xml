@@ -9,5 +9,12 @@
     </style>
 
 
-
+    <style name="base_text_style1">
+        <item name="android:textSize">@dimen/qb_px_14</item>
+        <item name="android:textColor">@color/base_gray3</item>
+    </style>
+    <style name="base_text_style0">
+        <item name="android:textSize">@dimen/qb_px_17</item>
+        <item name="android:textColor">@color/base_gray4</item>
+    </style>
 </resources>

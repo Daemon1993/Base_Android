@@ -2,4 +2,15 @@
     package="com.das.god_base">
 
 
+    <application>
+        <activity
+            android:name=".service.WebViewActivity"
+
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:process=":remoteWeb"
+            android:screenOrientation="portrait" />
+        <service android:name=".service.MessengerService" />
+    </application>
 </manifest>
