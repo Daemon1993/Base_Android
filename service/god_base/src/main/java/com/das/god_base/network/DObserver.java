@@ -1,9 +1,11 @@
 package com.das.god_base.network;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.das.god_base.ToastUtils;
 import com.google.gson.JsonParseException;
+import com.socks.library.KLog;
 
 import org.json.JSONException;
 
@@ -23,6 +25,7 @@ import retrofit2.adapter.rxjava3.HttpException;
 public  abstract  class DObserver<T> implements Observer<T> {
 
 
+
     @Override
     public void onSubscribe(@NonNull Disposable d) {
 
@@ -36,7 +39,7 @@ public  abstract  class DObserver<T> implements Observer<T> {
 
     @Override
     public void onError(@NonNull Throwable e) {
-        Log.e("Retrofit DObserver" , e.getMessage());
+        KLog.e("Retrofit DObserver" , e.getMessage());
         if (e instanceof HttpException) {     //   HTTP错误
             onException(ExceptionReason.BAD_NETWORK);
         } else if (e instanceof ConnectException
@@ -77,6 +80,9 @@ public  abstract  class DObserver<T> implements Observer<T> {
      *
      */
     public void onFail(String message) {
+        if(TextUtils.isEmpty(message)){
+            message="未知异常 数据格式异常";
+        }
         ToastUtils.toast(message);
     }
 

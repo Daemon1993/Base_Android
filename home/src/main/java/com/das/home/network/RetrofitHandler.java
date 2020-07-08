@@ -1,23 +1,12 @@
 package com.das.home.network;
 
-import android.util.Log;
 
-import com.das.god_base.network.LoggingInterceptor;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.Cache;
-import okhttp3.Interceptor;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitHandler {
 
@@ -55,7 +44,7 @@ public class RetrofitHandler {
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(DasService.BASEURL)
                 //JSON转换器,使用Gson来转换
-                .addConverterFactory(GsonConverterFactory.create())
+//                .addConverterFactory(GsonConverterFactory.create())
                 //RxJava适配器
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .client(mOkHttpClient)
@@ -77,7 +66,6 @@ public class RetrofitHandler {
 
                     mOkHttpClient = new OkHttpClient.Builder()
                             //添加log拦截器
-                            .addInterceptor(new LoggingInterceptor())
                             //设置连接超时时间
                             .connectTimeout(DEFAULT_CONNECT_TIME, TimeUnit.SECONDS)//连接超时时间
                             .writeTimeout(DEFAULT_WRITE_TIME, TimeUnit.SECONDS)//设置写操作超时时间

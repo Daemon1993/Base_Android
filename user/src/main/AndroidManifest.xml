@@ -3,7 +3,7 @@
     package="com.das.user">
 
     <application>
-        <activity android:name=".LoginActivity"></activity>
+
         <activity
             android:name=".SplashActivity"
             android:theme="@style/user_SplashTheme" />

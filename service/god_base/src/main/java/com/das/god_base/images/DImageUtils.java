@@ -25,42 +25,32 @@ import androidx.fragment.app.Fragment;
 
 public class DImageUtils {
 
+    public interface ImageActionCallBack{
+        void doAction(File resource);
+        void onError(String e);
+    }
     private static final RequestOptions sharedOptions = new RequestOptions()
                         .placeholder(R.color.base_gray2)
                         .centerCrop();;
 
 
-    public static void dowload_image2local(Context context, String url){
+    public static void dowload_image2local(Context context, String url ,ImageActionCallBack imageActionCallBack){
+        KLog.d("dowload_image2local "+url);
+
         RequestManager requestManager = Glide.with(context);
         RequestBuilder<File> fileRequestBuilder = requestManager.downloadOnly();
         Target<File> preload = fileRequestBuilder.load(url)
                 .listener(new RequestListener<File>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<File> target, boolean isFirstResource) {
+                        imageActionCallBack.onError(e.getMessage()+"");
                         return false;
                     }
 
                     @Override
                     public boolean onResourceReady(File resource, Object model, Target<File> target, DataSource dataSource, boolean isFirstResource) {
 
-                        AsyncUtls.asyncTask(new AsyncUtls.AsyncTask<String>() {
-                            @Override
-                            public String doTask() {
-                                FileUtils.copyNio(context,resource,"splash000.jpg");
-                                return null;
-                            }
-                        }, new AsyncUtls.AsyncCallBack<String>() {
-                            @Override
-                            public void onResult(String result) {
-
-                                KLog.d("--splash image onResourceReady--"+result);
-                            }
-
-                            @Override
-                            public void onError(Throwable e) {
-                                KLog.d("--splash image onError--"+e.getLocalizedMessage());
-                            }
-                        });
+                        imageActionCallBack.doAction(resource);
 
                         return false;
                     }

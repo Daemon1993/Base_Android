@@ -10,6 +10,7 @@ import android.view.View;
 import com.das.god_base.utils.BaseViewDataUtils;
 import com.das.god_base.view.BaseActivity;
 import com.das.user.R;
+import com.das.user.RouteUtils;
 import com.das.user.databinding.UserActivityInviteUserBinding;
 import com.das.user.databinding.UserActivitySetBinding;
 
@@ -20,6 +21,8 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
     protected void initLazyAction() {
 
         viewDataBinding.clClearCache.setOnClickListener(this);
+        viewDataBinding.clAbout.setOnClickListener(this);
+        viewDataBinding.clUpdatePwd.setOnClickListener(this);
 
         BaseViewDataUtils.layout_base_textview_style1DataAction(viewDataBinding.clUpdatePwd, "修改密码", null);
         BaseViewDataUtils.layout_base_textview_style1DataAction(viewDataBinding.clServerXy, "服务条款与隐私协议", null);
@@ -52,6 +55,16 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
 
                 }
             });
+            return;
+        }
+
+        if (v.getId() == R.id.cl_about) {
+            RouteUtils.openActivity(this, AboutActivity.class);
+            return;
+        }
+
+        if (v.getId() == R.id.cl_update_pwd) {
+            RouteUtils.openActivity(this, UpdatePwdActivity.class);
             return;
         }
     }

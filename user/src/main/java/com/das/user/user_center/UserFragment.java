@@ -81,6 +81,7 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
 
         inflate.clYqUser.setOnClickListener(this);
         inflate.clSet.setOnClickListener(this);
+
     }
 
     @Override
@@ -93,6 +94,7 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
             RouteUtils.openActivity(getContext(), SetActivity.class);
             return;
         }
+
 
     }
 }

@@ -1,15 +1,14 @@
 package com.das.user.network;
 
-import com.das.god_base.network.LoggingInterceptor;
+import com.das.user.network.convert.DGsonConverterFactory;
 
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RetrofitHandler {
+public class UserRetrofitHandler {
 
     private static final int DEFAULT_CONNECT_TIME = 10;
     private static final int DEFAULT_WRITE_TIME = 30;
@@ -19,18 +18,18 @@ public class RetrofitHandler {
 
     private Retrofit mRetrofit;
     private static OkHttpClient mOkHttpClient;
-    private static RetrofitHandler mRetrofitHandler;
+    private static UserRetrofitHandler mRetrofitHandler;
 
 
-    private RetrofitHandler() {
+    private UserRetrofitHandler() {
         initRetrofit();
     }
 
-    public static synchronized RetrofitHandler getInstance() {
+    public static synchronized UserRetrofitHandler getInstance() {
         if (mRetrofitHandler == null) {
-            synchronized (RetrofitHandler.class) {
+            synchronized (UserRetrofitHandler.class) {
                 if (mRetrofitHandler == null) {
-                    mRetrofitHandler = new RetrofitHandler();
+                    mRetrofitHandler = new UserRetrofitHandler();
                 }
             }
         }
@@ -42,13 +41,12 @@ public class RetrofitHandler {
      */
     private void initRetrofit() {
         initOkHttpClient();
+
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(DasService.BASEURL)
-                //JSON转换器,使用Gson来转换
-                .addConverterFactory(GsonConverterFactory.create())
-                //RxJava适配器
-                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+                .addConverterFactory(DGsonConverterFactory.create())
                 .build();
 
     }
@@ -62,12 +60,12 @@ public class RetrofitHandler {
      */
     private  void initOkHttpClient() {
         if (mOkHttpClient == null) {
-            synchronized (RetrofitHandler.class) {
+            synchronized (UserRetrofitHandler.class) {
                 if (mOkHttpClient == null) {
 
                     mOkHttpClient = new OkHttpClient.Builder()
                             //添加log拦截器
-                            .addInterceptor(new LoggingInterceptor())
+                            .addInterceptor(new UserLoggingInterceptor())
                             //设置连接超时时间
                             .connectTimeout(DEFAULT_CONNECT_TIME, TimeUnit.SECONDS)//连接超时时间
                             .writeTimeout(DEFAULT_WRITE_TIME, TimeUnit.SECONDS)//设置写操作超时时间
@@ -85,4 +83,7 @@ public class RetrofitHandler {
         return mRetrofit.create(service);
     }
 
+    public DasService createDasService() {
+        return mRetrofit.create(DasService.class);
+    }
 }

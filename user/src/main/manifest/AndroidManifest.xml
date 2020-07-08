@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon, android:label, android:theme">
-        <activity android:name=".user_center.SetActivity"></activity>
+        <activity android:name=".user_center.UpdatePwdActivity"></activity>
+        <activity android:name=".user_center.AboutActivity" />
+        <activity android:name=".user_center.SetActivity" />
         <activity android:name=".user_center.InviteUserActivity" />
         <activity
             android:name=".SplashActivity"

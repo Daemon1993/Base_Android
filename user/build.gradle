@@ -1,7 +1,6 @@
-
-if(isRunAlone.toBoolean()){
+if (isRunAlone.toBoolean()) {
     apply plugin: 'com.android.application'
-}else{
+} else {
     apply plugin: 'com.android.library'
 }
 
@@ -32,10 +31,19 @@ android {
     }
 
     buildTypes {
+
         release {
+            buildConfigField("boolean", "DEBUG_USER", "false")
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+            buildConfigField("boolean", "DEBUG_USER", "true")
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
     }
 
 
@@ -55,7 +63,7 @@ android {
             }
         }
     }
-    buildFeatures{
+    buildFeatures {
         dataBinding = true
     }
     compileOptions {
@@ -75,10 +83,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
 
-
     implementation project(path: ':componentbase')
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
-
 
 
 }

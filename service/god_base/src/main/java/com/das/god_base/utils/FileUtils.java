@@ -3,7 +3,6 @@ package com.das.god_base.utils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Environment;
-import android.text.TextUtils;
 
 
 import com.socks.library.KLog;
@@ -15,26 +14,26 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class FileUtils {
 
 
 
-    public static void save_download_image(Context context, Bitmap bitmap, String fileName) {
 
+
+    public static String save_download_image(Context context, Bitmap bitmap, String fileName) {
+
+        File imageFile = getDownloadImageSaveLocal(fileName, context);
         try {
             //图片沙盒文件夹
-            File imageFile = getDownloadImageSaveLocal(fileName, context);
             FileOutputStream fileOutputStream = new FileOutputStream(imageFile);
             bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fileOutputStream);
             fileOutputStream.flush();
             fileOutputStream.close();
         } catch (Exception e) {
-
+            return "";
         }
+        return imageFile.getAbsolutePath();
     }
 
     //查询沙盒中的指定图片
@@ -67,7 +66,7 @@ public class FileUtils {
         return new File(imageFileDirctory, fileName);
     }
 
-    public static void copyNio(Context context,File from, String filename) {
+    public static String copyNio(Context context, File from, String filename) {
         FileChannel input = null;
         FileChannel output = null;
 
@@ -79,7 +78,7 @@ public class FileUtils {
             output = new FileOutputStream(imageFile).getChannel();
             output.transferFrom(input, 0, input.size());
         } catch (Exception e) {
-            KLog.d("error occur while copy" + e.getMessage());
+            KLog.e("error occur while copy" + e.getMessage());
         } finally {
             try {
                 input.close();
@@ -93,6 +92,7 @@ public class FileUtils {
             }
 
         }
+        return imageFile.getAbsolutePath();
     }
 
 }

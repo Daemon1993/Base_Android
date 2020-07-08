@@ -1,4 +1,4 @@
-package com.das.god_base.utils;
+package com.das.god_base.utils.sp;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -13,7 +13,7 @@ public class PrefUtil {
     /**
      * 默认数据记录文件名称
      */
-    private static final String PREF_FILE = "Das_bj_daemon";
+    private static final String PREF_FILE = "user_das_v1r1";
 
     /**
      * 存储长整型数据
