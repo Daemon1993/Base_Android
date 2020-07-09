@@ -49,8 +49,8 @@ import androidx.databinding.DataBindingUtil;
 
 public class WebViewActivity extends BaseActivity {
 
-    public static final String LINK_URL="link_url";
-    private static final String ISHT ="isht" ;
+    public static final String LINK_URL = "link_url";
+
     private long startTime;
 
     private String url;
@@ -58,24 +58,15 @@ public class WebViewActivity extends BaseActivity {
     private boolean isht;
     private String temp_fn;
 
-    public static void openActivity(Context context, String link_url){
 
-        openActivity(context, link_url,true);
+    public static void openActivity(Context context, String link_url) {
 
-    }
 
-    public static void openActivity(Context context, String link_url, boolean isHT){
+        Intent intent = new Intent(context, WebViewActivity.class);
+        intent.putExtra(LINK_URL, link_url);
 
-        PermissionsUtils.requestVideoRecord(context, new PermissionsUtils.PermissonsCallback() {
+        context.startActivity(intent);
 
-            @Override
-            public void resultOK() {
-                Intent intent=new Intent(context,WebViewActivity.class);
-                intent.putExtra(LINK_URL,link_url);
-                intent.putExtra(ISHT,isHT);
-                context.startActivity(intent);
-            }
-        });
 
     }
 
@@ -100,7 +91,7 @@ public class WebViewActivity extends BaseActivity {
     public void onCreateNew(Bundle savedInstanceState) {
         mViewDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_webview);
 
-        temp_fn ="";
+        temp_fn = "";
         // Bind to the service
         bindService(new Intent(this, MessengerService.class), serviceConnection,
                 Context.BIND_AUTO_CREATE);
@@ -109,6 +100,8 @@ public class WebViewActivity extends BaseActivity {
         IX5WebViewExtension x5WebViewExtension = mViewDataBinding.webview.getX5WebViewExtension();
         KLog.e("   " + x5WebViewExtension);
 
+
+        url=getIntent().getStringExtra(LINK_URL);
 
         setUp();
 
@@ -143,6 +136,8 @@ public class WebViewActivity extends BaseActivity {
          * LOAD_CACHE_ELSE_NETWORK，只要本地有，无论是否过期，或者no-cache，都使用缓存中的数据。
          */
         webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);//不使用缓存，只从网络获取数据.
+
+        mViewDataBinding.webview.loadUrl(url);
     }
 
     //WebViewClient主要帮助WebView处理各种通知、请求事件
@@ -269,17 +264,17 @@ public class WebViewActivity extends BaseActivity {
 //        return super.onKeyDown(keyCode, event);
     }
 
-//
+    //
     @Override
     public void back() {
-//        super.back();
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                Log.e("-------   ", "javascript:goback()" );
-                mViewDataBinding.webview.loadUrl("javascript:goback()");
-            }
-        });
+        super.back();
+//        handler.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                Log.e("-------   ", "javascript:goback()");
+//                mViewDataBinding.webview.loadUrl("javascript:goback()");
+//            }
+//        });
 
     }
 
@@ -306,8 +301,8 @@ public class WebViewActivity extends BaseActivity {
         @JavascriptInterface
         public void web2Native(String request) {
             //request  json 通过类型来判断
-            temp_fn="";
-            Log.d("AAAA",request);
+            temp_fn = "";
+            Log.d("AAAA", request);
 
             Web2NativeBean web2Native = null;
             try {
@@ -317,14 +312,14 @@ public class WebViewActivity extends BaseActivity {
                 return;
             }
 
-            if(web2Native.isRefresh()){
+            if (web2Native.isRefresh()) {
                 actionRefreshDo(web2Native);
                 return;
             }
 
 
-            if(!TextUtils.isEmpty(web2Native.getFn())){
-                temp_fn =web2Native.getFn();
+            if (!TextUtils.isEmpty(web2Native.getFn())) {
+                temp_fn = web2Native.getFn();
             }
 
 
@@ -334,13 +329,14 @@ public class WebViewActivity extends BaseActivity {
 
     private void actionRefreshDo(Web2NativeBean web2Native) {
 
-        setData("refresh",new Gson().toJson(web2Native));
+        setData("refresh", new Gson().toJson(web2Native));
 
     }
 
 
     /**
      * native返回原生
+     *
      * @param response
      */
     private void actionNative2Web(String response) {
@@ -348,12 +344,12 @@ public class WebViewActivity extends BaseActivity {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                if(TextUtils.isEmpty(temp_fn)){
-                    temp_fn="native2Web";
+                if (TextUtils.isEmpty(temp_fn)) {
+                    temp_fn = "native2Web";
                 }
                 Log.e("-------   ", "javascript:" + temp_fn + "('" + response + "')");
                 mViewDataBinding.webview.loadUrl("javascript:" + temp_fn + "('" + response + "')");
-                temp_fn ="";
+                temp_fn = "";
             }
         });
 
@@ -402,19 +398,13 @@ public class WebViewActivity extends BaseActivity {
 
 
     Messenger messenger;
-    Handler handler1=new Handler() {
+    Handler handler1 = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case MessengerService.GET_DATA:
                     String type = (String) msg.getData().get("type");
-                    String response = (String) msg.getData().get("key");
-                    String app_token = (String) msg.getData().get("app_token");
-                    if(TextUtils.equals(type,"token")){
-
-                    }else if(TextUtils.equals(type,"action")){
-                        actionNative2Web(response);
-                    }
+                    KLog.d("---"+type);
 
                     break;
             }
@@ -422,9 +412,6 @@ public class WebViewActivity extends BaseActivity {
     };
 
     Messenger messengerReply = new Messenger(handler1);
-
-
-
 
 
     boolean mBound;
@@ -472,8 +459,6 @@ public class WebViewActivity extends BaseActivity {
             e.printStackTrace();
         }
     }
-
-
 
 
 }

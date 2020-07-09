@@ -50,6 +50,8 @@ public class AboutActivity extends BaseActivity {
     protected void initLazyAction() {
 
         setTopTitle("关于我们");
+        setLeftBack();
+
         String versionName = AppUtils.getVersionName(this);
 
         BaseViewDataUtils.
@@ -85,7 +87,7 @@ public class AboutActivity extends BaseActivity {
 
     private void needUpdate(String versionName, String url_path) {
 
-        showBaseDialog(versionName, new View.OnClickListener() {
+        showBaseDialog(versionName,"发现新版本", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

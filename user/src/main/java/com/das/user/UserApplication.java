@@ -1,12 +1,18 @@
 package com.das.user;
 
 import android.app.Application;
+import android.text.TextUtils;
+import android.util.Log;
 
 import com.das.componentbase.base.BaseApp;
 
 import com.das.god_base.BaseInitGod;
 import com.das.god_base.life.LifecycleApplication;
 import com.socks.library.KLog;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class UserApplication extends BaseApp {
 
@@ -25,8 +31,16 @@ public class UserApplication extends BaseApp {
 
         registerActivityLifecycleCallbacks(new LifecycleApplication());
 
-        BaseInitGod.init(application);
         KLog.init(true,"user_v1r1");
+
+        if (!isMainProcess()) {
+            String packageName = getPackageName();
+            KLog.d("AAA", packageName);
+
+            return;
+        }
+
+        BaseInitGod.init(application);
         KLog.e("UserApplication");
 
 
@@ -37,4 +51,6 @@ public class UserApplication extends BaseApp {
         UserBaseInitDo.init(this);
 
     }
+
+
 }

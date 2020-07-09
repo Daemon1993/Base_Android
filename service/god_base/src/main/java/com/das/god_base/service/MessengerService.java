@@ -50,7 +50,16 @@ public class MessengerService extends Service {
             switch (msg.what) {
                 case GET_DATA:
                     //客服端向服务端请求数据
+                    Bundle bundle = new Bundle();
 
+                    bundle.putString("type","token");
+                    Message message = Message.obtain(null, 1);
+                    message.setData(bundle);
+                    try {
+                        replyMessenger.send(message);
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
 
                     break;
                 case SET_DATA:

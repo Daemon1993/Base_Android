@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.View;
 
@@ -35,14 +36,21 @@ public class LoginActivity extends BaseActivity {
     private boolean pwd_ok;
 
     public static void openActivity(Activity activity) {
-        activity.startActivity(new Intent(activity, LoginActivity.class));
-        activity.finish();
+        Intent intent = new Intent(activity, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        activity.startActivity(intent);
+//        activity.finish();
     }
 
     UserActivityLoginBinding viewDataBinding;
 
     @Override
     protected void initLazyAction() {
+
+        UserLogin userLogin = NoSqlUtils.getObject(NoSqlUtils.login_user);
+
+        viewDataBinding.etPwd.setText(userLogin.getPassword());
+        viewDataBinding.etUser.setText(userLogin.getUserName());
 
     }
 
@@ -105,6 +113,7 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
+        viewDataBinding.etPwd.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
     }
 
     private void updateEnableButton() {
@@ -124,19 +133,19 @@ public class LoginActivity extends BaseActivity {
 
         UserLogin userLogin = new UserLogin(name, pwd);
         UserRetrofitHandler.getInstance().createDasService().login(Object2MapUtils.praseObject2Map(userLogin))
-        .compose(bindToLifecycle())
-        .subscribe(new DObserver<LoginResponse>(){
-            @Override
-            public void onSuccess(LoginResponse loginResponse) {
+                .compose(bindToLifecycle())
+                .subscribe(new DObserver<LoginResponse>() {
+                    @Override
+                    public void onSuccess(LoginResponse loginResponse) {
 
-                NoSqlUtils.addObject(NoSqlUtils.login_user,userLogin);
-                NoSqlUtils.addObject(NoSqlUtils.login_response,loginResponse);
+                        NoSqlUtils.addObject(NoSqlUtils.login_user, userLogin);
+                        NoSqlUtils.addObject(NoSqlUtils.login_response, loginResponse);
 
 
-                MainActivity.openActivity(LoginActivity.this);
-                finish();
-            }
-        });
+                        MainActivity.openActivity(LoginActivity.this);
+                        finish();
+                    }
+                });
 
     }
 }

@@ -77,7 +77,7 @@ public abstract class BaseActivity extends RxAppCompatActivity {
     protected abstract void onCreateNew(Bundle savedInstanceState);
 
 
-    public void showBaseDialog(String text, String left, String right, View.OnClickListener leftc, View.OnClickListener rightc) {
+    public void showBaseDialog(String text, String top_msg,String left, String right, View.OnClickListener leftc, View.OnClickListener rightc) {
 
         if (dBaseDialog == null) {
             dBaseDialog = new DBaseDialog();
@@ -90,16 +90,20 @@ public abstract class BaseActivity extends RxAppCompatActivity {
                 && dBaseDialog.getDialog().isShowing()
                 && !dBaseDialog.isRemoving()) {
 
-            dBaseDialog.setShowContent(text, left, right);
+            dBaseDialog.setShowContent(text, left, right,top_msg);
             return;
         }
-        dBaseDialog.setShowContent(text, left, right);
+        dBaseDialog.setShowContent(text, left, right,top_msg);
         dBaseDialog.show(getSupportFragmentManager(), "dbase" + Tag);
     }
 
 
+    public void showBaseDialog(String text, String top_msg,View.OnClickListener leftc, View.OnClickListener rightc) {
+        showBaseDialog(text, top_msg,"", "", leftc, rightc);
+    }
+
     public void showBaseDialog(String text, View.OnClickListener leftc, View.OnClickListener rightc) {
-        showBaseDialog(text, "", "", leftc, rightc);
+        showBaseDialog(text, "", leftc, rightc);
     }
 
     public void showLoading() {

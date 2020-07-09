@@ -43,4 +43,9 @@ public class NoSqlUtils {
         addObject(login_user,userLogin);
 
     }
+
+    public static void loginOut(){
+        Paper.book().delete(login_response);
+
+    }
 }

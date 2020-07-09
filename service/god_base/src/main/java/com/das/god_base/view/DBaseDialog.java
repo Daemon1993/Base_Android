@@ -39,6 +39,8 @@ public class DBaseDialog extends DialogFragment {
     private String content;
     private View.OnClickListener rightListener;
     private View.OnClickListener leftListener;
+    private TextView tv_ts;
+    private String ts_msg;
 
 
     public void setRightListener(View.OnClickListener rightListener) {
@@ -63,6 +65,7 @@ public class DBaseDialog extends DialogFragment {
         View view = inflater.inflate(R.layout.dialog_dbase_layout, null, false);
 
         tv_content = (TextView) view.findViewById(R.id.tv_content);
+        tv_ts = (TextView) view.findViewById(R.id.tv_ts);
         tv_left = (TextView) view.findViewById(R.id.tv_left);
         tv_right = (TextView) view.findViewById(R.id.tv_right);
 
@@ -78,6 +81,10 @@ public class DBaseDialog extends DialogFragment {
 
         if (!TextUtils.isEmpty(right)) {
             tv_right.setText(right);
+        }
+
+        if (!TextUtils.isEmpty(ts_msg)) {
+            tv_ts.setText(ts_msg);
         }
 
 
@@ -108,11 +115,13 @@ public class DBaseDialog extends DialogFragment {
         return view;
     }
 
-    public void setShowContent(String content, String left, String right) {
+
+    public void setShowContent(String content, String left, String right,String ts_msg) {
 
         this.content = content;
         this.left = left;
         this.right = right;
+        this.ts_msg = ts_msg;
 
         if (tv_content == null) {
             return;
@@ -124,6 +133,9 @@ public class DBaseDialog extends DialogFragment {
         }
         if (!TextUtils.isEmpty(right)) {
             tv_right.setText(right + "");
+        }
+        if (!TextUtils.isEmpty(ts_msg)) {
+            tv_ts.setText(ts_msg + "");
         }
     }
 

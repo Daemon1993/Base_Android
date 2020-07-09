@@ -9,15 +9,18 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.das.god_base.ToastUtils;
+import com.das.god_base.service.WebViewActivity;
 import com.das.god_base.utils.AsyncUtls;
 import com.das.god_base.utils.BaseViewDataUtils;
 import com.das.god_base.utils.FileUtils;
 import com.das.god_base.view.BaseActivity;
 import com.das.god_base.view.LiveEventBusProprs;
+import com.das.user.LoginActivity;
 import com.das.user.R;
 import com.das.user.RouteUtils;
 import com.das.user.databinding.UserActivityInviteUserBinding;
 import com.das.user.databinding.UserActivitySetBinding;
+import com.das.user.nosql.NoSqlUtils;
 import com.jeremyliao.liveeventbus.LiveEventBus;
 import com.socks.library.KLog;
 
@@ -34,30 +37,21 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
         viewDataBinding.clClearCache.setOnClickListener(this);
         viewDataBinding.clAbout.setOnClickListener(this);
         viewDataBinding.clUpdatePwd.setOnClickListener(this);
+        viewDataBinding.tvLogout.setOnClickListener(this);
 
         BaseViewDataUtils.layout_base_textview_style1DataAction(viewDataBinding.clUpdatePwd, "修改密码", null);
         BaseViewDataUtils.layout_base_textview_style1DataAction(viewDataBinding.clServerXy, "服务条款与隐私协议", null);
 
         BaseViewDataUtils.layout_base_textview_style1DataAction(viewDataBinding.clAbout, "关于我们", null);
 
-
-
-        viewDataBinding.clClearCache.setOnClickListener(new View.OnClickListener() {
+        viewDataBinding.clServerXy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showBaseDialog("您确定要清除缓存吗？", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                    }
-                }, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        doDeleteCacher();
-                    }
-                });
+                WebViewActivity.openActivity(SetActivity.this,"http://www.baidu.com");
             }
         });
+
+
     }
 
     @Override
@@ -134,7 +128,7 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
             }, new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    doDeleteCacher();
                 }
             });
             return;
@@ -147,6 +141,12 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
 
         if (v.getId() == R.id.cl_update_pwd) {
             RouteUtils.openActivity(this, UpdatePwdActivity.class);
+            return;
+        }
+
+        if (v.getId() == R.id.tv_logout) {
+            NoSqlUtils.loginOut();
+            LoginActivity.openActivity(this);
             return;
         }
     }
