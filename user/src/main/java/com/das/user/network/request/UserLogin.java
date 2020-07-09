@@ -4,6 +4,19 @@ public class UserLogin {
     public String grant_type="password";
     public String UserName;
     public String Password;
+    public String refresh_token;
+
+    public UserLogin(String refresh_token) {
+        this.refresh_token = refresh_token;
+    }
+
+    public String getRefresh_token() {
+        return refresh_token;
+    }
+
+    public void setRefresh_token(String refresh_token) {
+        this.refresh_token = refresh_token;
+    }
 
     public UserLogin(String userName, String password) {
         UserName = userName;

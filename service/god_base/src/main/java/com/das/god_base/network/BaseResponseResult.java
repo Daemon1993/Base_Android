@@ -22,4 +22,7 @@ public class BaseResponseResult {
     }
 
 
+    public boolean isOk() {
+        return retCode==0;
+    }
 }

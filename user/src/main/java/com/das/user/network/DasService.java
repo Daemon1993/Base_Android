@@ -5,6 +5,8 @@ import com.das.user.network.request.UpdatePwd;
 import com.das.user.network.request.UserLogin;
 import com.das.user.network.response.LoginResponse;
 import com.das.user.network.response.Splash2Response;
+import com.das.user.network.response.UserInfoResponse;
+import com.das.user.network.response.VersionAppResponse;
 
 import java.util.Map;
 
@@ -16,6 +18,7 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Streaming;
 import retrofit2.http.Url;
 
 public interface DasService {
@@ -32,19 +35,27 @@ public interface DasService {
 
     @FormUrlEncoded
     @POST("/api/app/v1/TokenServer/RefreshToken")
-    Observable<LoginResponse> refreshToken(@FieldMap Map<String, String> params);
+    Call<LoginResponse> refreshToken(@FieldMap Map<String, String> params);
 
 
     @POST("/api/app/v1/IbmsAccount/ChangePwd")
     Observable<BaseResponseResult> updatePwd(@Body UpdatePwd updatePwd);
 
     @POST("/api/app/v1/IbmsAccount/GetUserProfile")
-    Observable<BaseResponseResult> getUserInfo();
+    Observable<UserInfoResponse> getUserInfo();
 
 
     @POST("/api/app/v1/FlyScreen/GetFlyScreen")
     Observable<Splash2Response> getAppSplash2();
 
+
+    @POST("/api/app/v1/AppOfAndriod/GetMaximumVersion")
+    Observable<VersionAppResponse> GetMaximumVersion(@Body String operatingsystem);
+
+
+    @Streaming
+    @GET
+    Observable<ResponseBody> downloadFile(@Url String url);
 
 
 }

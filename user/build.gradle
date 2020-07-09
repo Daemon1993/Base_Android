@@ -85,6 +85,6 @@ dependencies {
 
     implementation project(path: ':componentbase')
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
-
+    implementation 'com.amitshekhar.android:android-networking:1.0.2'
 
 }

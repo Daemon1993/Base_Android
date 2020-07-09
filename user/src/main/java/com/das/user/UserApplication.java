@@ -4,10 +4,13 @@ import android.app.Application;
 
 import com.das.componentbase.base.BaseApp;
 
+import com.das.god_base.BaseInitGod;
 import com.das.god_base.life.LifecycleApplication;
 import com.socks.library.KLog;
 
 public class UserApplication extends BaseApp {
+
+    public static String userName;
 
     @Override
     public void onCreate() {
@@ -22,6 +25,7 @@ public class UserApplication extends BaseApp {
 
         registerActivityLifecycleCallbacks(new LifecycleApplication());
 
+        BaseInitGod.init(application);
         KLog.init(true,"user_v1r1");
         KLog.e("UserApplication");
 

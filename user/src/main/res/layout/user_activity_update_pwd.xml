@@ -1,25 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".user_center.UpdatePwdActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <include
-        layout="@layout/layout_top"/>
+    <data>
 
-    <include
-        android:id="@+id/cl_old_pwd"
-        layout="@layout/layout_base_edittext_style1" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/base_white"
+        tools:context=".user_center.UpdatePwdActivity">
+
+        <include layout="@layout/layout_top" />
+
+        <include
+            android:id="@+id/cl_old_pwd"
+            layout="@layout/layout_base_edittext_style1" />
 
 
-    <include
-        android:id="@+id/cl_new_pwd1"
-        layout="@layout/layout_base_edittext_style1" />
+        <include
+            android:id="@+id/cl_new_pwd1"
+            layout="@layout/layout_base_edittext_style1" />
 
-    <include
-        android:id="@+id/cl_new_pwd1"
-        layout="@layout/layout_base_edittext_style1" />
-</LinearLayout>
+        <include
+            android:id="@+id/cl_new_pwd2"
+            layout="@layout/layout_base_edittext_style1" />
+    </LinearLayout>
+</layout>

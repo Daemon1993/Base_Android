@@ -103,4 +103,12 @@ public class LoginResponse extends BaseResponseResult {
         }
     }
 
+    @Override
+    public String toString() {
+        return "LoginResponse{" +
+                "data=" + data +
+                ", retCode=" + retCode +
+                ", message='" + message + '\'' +
+                '}';
+    }
 }

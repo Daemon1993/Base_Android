@@ -52,15 +52,15 @@ public class UserLoggingInterceptor implements Interceptor {
 
         Request request = requestBuilder.build();
 
-        Response response = chain.proceed(chain.request());
+        Response response = chain.proceed(request);
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
         ResponseBody responseBody = response.peekBody(1024 * 1024);
         String content = responseBody.string();
 
         KLog.d(TAG, "----------Request Start----------------");
-        KLog.d(TAG, "| " + request.toString() + request.headers().toString() +" \n "+sb.toString());
-        KLog.d(TAG, "| Response:" + content);
+        KLog.d(TAG,   request.url()+"   "+sb.toString());
+//        KLog.d(TAG, "| Response:" + content);
         KLog.d(TAG, "----------Request End:" + duration + "毫秒----------");
         return response;
     }

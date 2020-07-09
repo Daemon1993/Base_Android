@@ -148,6 +148,21 @@ public class PermissionsUtils {
         }, new String[]{Manifest.permission.READ_PHONE_STATE}, true, tip);
     }
 
+    public static void requestInstanll(Activity activity, final PermissonsCallback permissonsCallback) {
+        PermissionsUtil.TipInfo tip = new PermissionsUtil.TipInfo("注意:", "需要读取手机状态权限", "取消", "打开权限");
+        PermissionsUtil.requestPermission(activity, new PermissionListener() {
+            @Override
+            public void permissionGranted(@NonNull String[] permissions) {
+                permissonsCallback.resultOK();
+            }
+
+            @Override
+            public void permissionDenied(@NonNull String[] permissions) {
+                ToastUtils.toast("用户拒绝了手机状态权限");
+            }
+        }, new String[]{Manifest.permission.REQUEST_INSTALL_PACKAGES}, true, tip);
+    }
+
 
     /*-------------------------------------------------------------------------------------------*/
     public static void go2CaptureActivity(final Context context, final Intent intent, final int scanninGrequestCode) {

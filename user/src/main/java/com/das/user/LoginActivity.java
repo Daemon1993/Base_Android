@@ -4,6 +4,7 @@ import androidx.databinding.DataBindingUtil;
 import io.reactivex.rxjava3.functions.Consumer;
 import okhttp3.ResponseBody;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,8 +34,9 @@ public class LoginActivity extends BaseActivity {
     private boolean user_ok;
     private boolean pwd_ok;
 
-    public static void openActivity(Context context) {
-        context.startActivity(new Intent(context, LoginActivity.class));
+    public static void openActivity(Activity activity) {
+        activity.startActivity(new Intent(activity, LoginActivity.class));
+        activity.finish();
     }
 
     UserActivityLoginBinding viewDataBinding;

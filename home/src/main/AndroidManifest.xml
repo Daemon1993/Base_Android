@@ -3,6 +3,7 @@
     package="com.das.home">
 
     <application>
+
         <activity android:name=".MainActivity"></activity>
     </application>
 

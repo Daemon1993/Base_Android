@@ -27,6 +27,7 @@
     <TextView
         android:id="@+id/tv_right"
         style="@style/base_text_style0"
+        android:textColor="@color/base_blue00"
         android:layout_width="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"

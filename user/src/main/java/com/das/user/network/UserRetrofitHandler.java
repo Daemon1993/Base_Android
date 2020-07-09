@@ -1,6 +1,9 @@
 package com.das.user.network;
 
+import com.das.god_base.network.JsDownloadInterceptor;
+import com.das.god_base.network.JsDownloadListener;
 import com.das.user.network.convert.DGsonConverterFactory;
+import com.socks.library.KLog;
 
 import java.util.concurrent.TimeUnit;
 
@@ -73,6 +76,7 @@ public class UserRetrofitHandler {
                             //默认重试一次
                             .retryOnConnectionFailure(true)
                             .build();
+
                 }
             }
         }
@@ -85,5 +89,14 @@ public class UserRetrofitHandler {
 
     public DasService createDasService() {
         return mRetrofit.create(DasService.class);
+    }
+
+    public DasService createDasService(JsDownloadListener jsDownloadListener){
+//        JsDownloadInterceptor jsDownloadInterceptor=new JsDownloadInterceptor(jsDownloadListener);
+//        mOkHttpClient.newBuilder().addInterceptor(jsDownloadInterceptor).build();
+//        mRetrofit.newBuilder().client(mOkHttpClient).build();
+
+        return mRetrofit.create(DasService.class);
+
     }
 }

@@ -16,7 +16,7 @@ public class LifecycleApplication implements Application.ActivityLifecycleCallba
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
         ActivityManager.getInstance().addActivity(activity);
-        KLog.d(" onActivityCreated  "+ActivityManager.getInstance().getAllActivityStacks().size());
+//        KLog.d(" onActivityCreated  "+ActivityManager.getInstance().getAllActivityStacks().size());
     }
 
     @Override
@@ -29,7 +29,7 @@ public class LifecycleApplication implements Application.ActivityLifecycleCallba
     public void onActivityResumed(Activity activity) {
 
 //        XLog.d("onActivityResumed");
-        KLog.d("application onActivityResumed is in foreground: "+activity.getClass().getSimpleName() +" "+ (resumed > paused) );
+//        KLog.d("application onActivityResumed is in foreground: "+activity.getClass().getSimpleName() +" "+ (resumed > paused) );
         ++resumed;
 
 
@@ -38,7 +38,7 @@ public class LifecycleApplication implements Application.ActivityLifecycleCallba
     @Override
     public void onActivityPaused(Activity activity) {
         ++paused;
-        KLog.d("application onActivityPaused is in foreground: " + (resumed > paused) +"  "+activity.getClass().getSimpleName());
+//        KLog.d("application onActivityPaused is in foreground: " + (resumed > paused) +"  "+activity.getClass().getSimpleName());
 
 
     }
@@ -47,7 +47,7 @@ public class LifecycleApplication implements Application.ActivityLifecycleCallba
     public void onActivityStopped(Activity activity) {
         ++stopped;
 
-        KLog.d("application onActivityStopped is visible: " + (started > stopped)+"  "+activity.getClass().getSimpleName());
+//        KLog.d("application onActivityStopped is visible: " + (started > stopped)+"  "+activity.getClass().getSimpleName());
     }
 
     @Override

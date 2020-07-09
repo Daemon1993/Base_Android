@@ -18,8 +18,20 @@ import java.nio.channels.FileChannel;
 public class FileUtils {
 
 
-
-
+    /**
+     * root dir
+     * @param context
+     * @return
+     */
+    public static String getDirPath(Context context){
+        try {
+            return context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath();
+        } catch (Exception e) {
+            e.printStackTrace();
+            KLog.e("getDirPath "+e.getMessage());
+            return context.getCacheDir().getAbsolutePath();
+        }
+    };
 
     public static String save_download_image(Context context, Bitmap bitmap, String fileName) {
 
@@ -36,29 +48,59 @@ public class FileUtils {
         return imageFile.getAbsolutePath();
     }
 
-    //查询沙盒中的指定图片
-//先指定哪个沙盒子文件夹，再指定名称
-    public File[] queryAllPathByLocalType(Context context, String environmentType) {
+    public static void clearLocalCache(Context context) {
+        File picturesFile =new File(getDirPath(context));
+        deleteDir(picturesFile);
 
-        try {
-            //指定沙盒文件夹
-            File picturesFile = context.getApplicationContext().getExternalFilesDir(environmentType);
-
-
-            if ( picturesFile.exists() && picturesFile.isDirectory()) {
-                return picturesFile.listFiles();
-            }
-        } catch (Exception e) {
-        }
-        return null;
     }
 
+    private static void deleteDir(File dir) {
+        if (dir != null && dir.isDirectory()) {
+            String[] children = dir.list();
+            for (int i = 0; i < children.length; i++) {
+                deleteDir(new File(dir, children[i]));
+            }
+        }
+        dir.delete();
+    }
 
+    //查询沙盒中的指定图片
+    //先指定哪个沙盒子文件夹，再指定名称
+    public static long queryAllCacheFileSize(Context context) {
+        //指定沙盒文件夹
+        File picturesFile = new File(getDirPath(context));
+        try {
+            return getFolderSize(picturesFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+
+
+    }
+
+    public static long getFolderSize(File file) throws Exception {
+        long size = 0;
+        try {
+            File[] fileList = file.listFiles();
+            for (int i = 0; i < fileList.length; i++) {
+                // 如果下面还有文件
+                if (fileList[i].isDirectory()) {
+                    size = size + getFolderSize(fileList[i]);
+                } else {
+                    size = size + fileList[i].length();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return size;
+    }
 
 
     @NotNull
     private static File getDownloadImageSaveLocal(String fileName, Context context) {
-        File root_dowload = context.getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
+        File root_dowload =new File(getDirPath(context)) ;
         File imageFileDirctory = new File(root_dowload + "/images");
         if (!imageFileDirctory.exists()) {
             imageFileDirctory.mkdir();
@@ -94,5 +136,6 @@ public class FileUtils {
         }
         return imageFile.getAbsolutePath();
     }
+
 
 }
