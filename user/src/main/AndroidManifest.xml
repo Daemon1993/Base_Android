@@ -2,13 +2,34 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.das.user">
 
-    <application>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
-        <activity
-            android:name=".SplashActivity"
-            android:theme="@style/user_SplashTheme" />
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".LoginActivity"/>
+    <application android:networkSecurityConfig="@xml/user_network_security_config">
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/user_file_paths" />
+        </provider>
+
+
+
+
+        <activity android:name=".user_center.UpdatePwdActivity" />
+        <activity android:name=".user_center.AboutActivity" />
+        <activity android:name=".user_center.SetActivity" />
+        <activity android:name=".user_center.InviteUserActivity" />
+
+        <activity android:name=".MainActivity" >
+        </activity>
+        <activity android:name=".LoginActivity" android:launchMode="singleTask" />
     </application>
 
 </manifest>

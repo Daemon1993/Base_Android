@@ -17,18 +17,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//
+//         viewDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+//
+//         viewDataBinding.btDo.setOnClickListener(new View.OnClickListener() {
+//             @Override
+//             public void onClick(View v) {
+//
+//             }
+//         });
 
-         viewDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-
-         viewDataBinding.btDo.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 ARouter.getInstance().build(Router_Pools.User_SplashActivity).navigation();
-             }
-         });
-
-
-        ServiceFactory.getInstance().getiLoginService().initAction();
 
 
     }

@@ -23,7 +23,7 @@
             android:id="@+id/cl_top_main"
             android:layout_width="match_parent"
             android:layout_height="@dimen/qb_px_160"
-            android:background="@color/base_white">
+            android:background="@color/base_white_bg">
 
             <ImageView
                 android:id="@+id/iv_icon"

@@ -23,7 +23,8 @@ import retrofit2.http.Url;
 
 public interface DasService {
 
-    String BASEURL="http://192.168.100.96:8081";
+//    String BASEURL="http://192.168.100.96:8081";
+    String BASEURL="http://172.168.111.244:5880";
 
     @GET("/")
     Call<String> test();
@@ -51,6 +52,10 @@ public interface DasService {
 
     @POST("/api/app/v1/AppOfAndriod/GetMaximumVersion")
     Observable<VersionAppResponse> GetMaximumVersion(@Body String operatingsystem);
+
+
+    @POST("/api/app/v1/MobileEngine/GetMenuPageList")
+    Observable<BaseResponseResult> GetMenuPageList();
 
 
     @Streaming

@@ -19,10 +19,10 @@ public abstract class BaseApp extends Application {
      */
     public abstract void initModuleData(Application application);
 
-    public boolean isMainProcess() {
+    public boolean isMainProcess(Application application) {
 
         // 获取当前包名
-        String packageName = getPackageName();
+        String packageName = application.getPackageName();
         // 获取当前进程名
         String processName = getProcessName(android.os.Process.myPid());
 

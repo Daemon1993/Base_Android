@@ -7,16 +7,20 @@
 
 
 
-    <color name="base_white">#ffffff</color>
+
     <color name="base_black">#000000</color>
-    <color name="base_gray0">#EEEEEE</color>
-    <color name="base_gray1">#E5E5E5</color>
-    <color name="base_gray2">#CCCCCC</color>
-    <color name="base_gray3">#333333 </color>
     <color name="base_gray4">#000000 </color>
 
+    <color name="base_text_color1">#333333 </color>
+    <color name="base_text_color2">#666666 </color>
+    <color name="base_text_color3">#999999 </color>
 
-    <color name="base_blue00">#0058D5 </color>
+    <color name="base_un_click">#CCCCCC</color>
+    <color name="base_white_bg">#ffffff</color>
+    <color name="base_gray_bg">#EEEEEE</color>
+    <color name="base_gray_fz">#E5E5E5</color>
 
-    <color name="base_blue0">#006DF1</color>
+    <color name="base_blue_bt0">#0058D5 </color>
+
+    <color name="base_blue_bt1">#006DF1</color>
 </resources>

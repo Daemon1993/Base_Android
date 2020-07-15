@@ -52,9 +52,9 @@ public class UpdatePwdActivity extends BaseActivity {
         EditText tv_right_new1 = viewDataBinding.clNewPwd1.findViewById(R.id.tv_right);
         EditText tv_right_new2 = viewDataBinding.clNewPwd2.findViewById(R.id.tv_right);
 
-        tv_right_old.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        tv_right_new1.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        tv_right_new2.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        tv_right_old.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        tv_right_new1.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        tv_right_new2.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
         if (TextUtils.isEmpty(tv_right_old.getText())) {
             ToastUtils.toast("旧密码不能为空");

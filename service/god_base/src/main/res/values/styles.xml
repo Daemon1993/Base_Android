@@ -3,9 +3,9 @@
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/user_colorPrimary</item>
-        <item name="colorPrimaryDark">@color/user_colorPrimaryDark</item>
-        <item name="colorAccent">@color/base_gray2</item>
+<!--        <item name="colorPrimary">@color/user_colorPrimary</item>-->
+<!--        <item name="colorPrimaryDark">@color/user_colorPrimaryDark</item>-->
+<!--        <item name="colorAccent">@color/base_gray2</item>-->
     </style>
 
     <style name="BaseDialog" parent="Theme.AppCompat.Dialog">
@@ -16,7 +16,7 @@
 
     <style name="base_text_style1">
         <item name="android:textSize">@dimen/qb_px_14</item>
-        <item name="android:textColor">@color/base_gray3</item>
+        <item name="android:textColor">@color/base_text_color1</item>
     </style>
     <style name="base_text_style0">
         <item name="android:textSize">@dimen/qb_px_17</item>

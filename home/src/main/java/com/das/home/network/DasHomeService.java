@@ -10,7 +10,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Url;
 
-public interface DasService {
+public interface DasHomeService {
     String BASEURL="https://www.baidu.com";
 
 

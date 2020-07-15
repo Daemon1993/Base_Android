@@ -1,13 +1,6 @@
 <resources>
     <!-- Base application theme. -->
 
-    <style name="user_SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- 欢迎页背景引用刚才写好的 -->
-        <item name="android:windowBackground">@drawable/user_splash</item>
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:windowNoTitle">true</item>
-        <!-- <item name="android:windowIsTranslucent">true</item> --> <!-- 透明背景不要了 -->
-    </style>
 
 
 

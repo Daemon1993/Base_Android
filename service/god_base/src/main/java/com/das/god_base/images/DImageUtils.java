@@ -3,7 +3,6 @@ package com.das.god_base.images;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -18,8 +17,6 @@ import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.das.god_base.R;
 
-import com.das.god_base.utils.AsyncUtls;
-import com.das.god_base.utils.FileUtils;
 import com.socks.library.KLog;
 
 import java.io.File;
@@ -39,7 +36,7 @@ public class DImageUtils {
         void doAction(Bitmap bitmap);
     }
     private static final RequestOptions sharedOptions = new RequestOptions()
-                        .placeholder(R.color.base_gray2)
+                        .placeholder(R.color.base_un_click)
                         .centerCrop();;
 
 

@@ -28,7 +28,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="@dimen/qb_px_10"
         android:text="数据处理中..."
-        android:textColor="@color/base_white"
+        android:textColor="@color/base_white_bg"
         android:textSize="@dimen/qb_px_15" />
 
 

@@ -10,9 +10,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.das.componentbase.router.Router_Pools;
 import com.das.god_base.network.BaseResponseResult;
 import com.das.god_base.network.DObserver;
 import com.das.god_base.utils.BaseViewDataUtils;
@@ -30,6 +33,7 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
+@Route(path = Router_Pools.User_Login_Activity)
 public class LoginActivity extends BaseActivity {
 
     private boolean user_ok;
@@ -47,10 +51,25 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void initLazyAction() {
 
-        UserLogin userLogin = NoSqlUtils.getObject(NoSqlUtils.login_user);
+        viewDataBinding.etPwd.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
-        viewDataBinding.etPwd.setText(userLogin.getPassword());
-        viewDataBinding.etUser.setText(userLogin.getUserName());
+        UserLogin userLogin = NoSqlUtils.getObject(NoSqlUtils.login_user);
+        if(userLogin==null){
+            viewDataBinding.etPwd.setText("");
+            viewDataBinding.etPwd.setText("");
+            return;
+        }
+
+        String password = userLogin.getPassword();
+        String userName = userLogin.getUserName();
+
+        if(!TextUtils.isEmpty(password)){
+            viewDataBinding.etPwd.setText(password);
+        }
+
+        if(!TextUtils.isEmpty(userName)) {
+            viewDataBinding.etUser.setText(userName);
+        }
 
     }
 
@@ -58,6 +77,7 @@ public class LoginActivity extends BaseActivity {
     protected void onCreateNew(Bundle savedInstanceState) {
 
         viewDataBinding = DataBindingUtil.setContentView(this, R.layout.user_activity_login);
+
 
         viewDataBinding.btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +133,7 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
-        viewDataBinding.etPwd.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
     }
 
     private void updateEnableButton() {

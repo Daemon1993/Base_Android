@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.das.componentbase.router.Router_Pools;
 import com.das.god_base.network.BaseResponseResult;
 import com.das.god_base.network.DObserver;
 import com.das.god_base.utils.BaseViewDataUtils;
@@ -27,6 +29,7 @@ import com.das.user.network.response.UserInfoResponse;
  * Use the {@link UserFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+@Route(path = Router_Pools.User_Center_Fragment)
 public class UserFragment extends BaseFragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match

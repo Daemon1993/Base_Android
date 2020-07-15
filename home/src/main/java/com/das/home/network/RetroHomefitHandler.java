@@ -8,7 +8,7 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 
-public class RetrofitHandler {
+public class RetroHomefitHandler {
 
     private static final int DEFAULT_CONNECT_TIME = 10;
     private static final int DEFAULT_WRITE_TIME = 30;
@@ -18,18 +18,18 @@ public class RetrofitHandler {
 
     private Retrofit mRetrofit;
     private static OkHttpClient mOkHttpClient;
-    private static RetrofitHandler mRetrofitHandler;
+    private static RetroHomefitHandler mRetrofitHandler;
 
 
-    private RetrofitHandler() {
+    private RetroHomefitHandler() {
         initRetrofit();
     }
 
-    public static synchronized RetrofitHandler getInstance() {
+    public static synchronized RetroHomefitHandler getInstance() {
         if (mRetrofitHandler == null) {
-            synchronized (RetrofitHandler.class) {
+            synchronized (RetroHomefitHandler.class) {
                 if (mRetrofitHandler == null) {
-                    mRetrofitHandler = new RetrofitHandler();
+                    mRetrofitHandler = new RetroHomefitHandler();
                 }
             }
         }
@@ -42,7 +42,7 @@ public class RetrofitHandler {
     private void initRetrofit() {
         initOkHttpClient();
         mRetrofit = new Retrofit.Builder()
-                .baseUrl(DasService.BASEURL)
+                .baseUrl(DasHomeService.BASEURL)
                 //JSON转换器,使用Gson来转换
 //                .addConverterFactory(GsonConverterFactory.create())
                 //RxJava适配器
@@ -61,11 +61,12 @@ public class RetrofitHandler {
      */
     private  void initOkHttpClient() {
         if (mOkHttpClient == null) {
-            synchronized (RetrofitHandler.class) {
+            synchronized (RetroHomefitHandler.class) {
                 if (mOkHttpClient == null) {
 
                     mOkHttpClient = new OkHttpClient.Builder()
                             //添加log拦截器
+                            .addInterceptor(new HomeLoggingInterceptor())
                             //设置连接超时时间
                             .connectTimeout(DEFAULT_CONNECT_TIME, TimeUnit.SECONDS)//连接超时时间
                             .writeTimeout(DEFAULT_WRITE_TIME, TimeUnit.SECONDS)//设置写操作超时时间

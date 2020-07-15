@@ -10,7 +10,7 @@
         android:layout_width="@dimen/qb_px_55"
         android:layout_height="@dimen/qb_px_55"
         android:indeterminateTintMode="src_atop"
-        android:indeterminateTint="@color/base_white"
+        android:indeterminateTint="@color/base_white_bg"
         android:layout_centerInParent="true" />
 
     <TextView
@@ -21,7 +21,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="@dimen/qb_px_5"
         android:text="数据处理中..."
-        android:textColor="@color/base_white"
+        android:textColor="@color/base_white_bg"
         android:textSize="12sp" />
 
 

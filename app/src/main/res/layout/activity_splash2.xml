@@ -9,9 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-        tools:context=".user_center.Splash2Activity">
+        android:layout_height="match_parent">
 
         <ImageView
             app:layout_constraintTop_toTopOf="parent"

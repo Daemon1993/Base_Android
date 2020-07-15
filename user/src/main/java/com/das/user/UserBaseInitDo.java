@@ -6,7 +6,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.das.componentbase.ServiceFactory;
 import com.das.god_base.Dlog;
 import com.das.user.nosql.NoSqlUtils;
-import com.das.user.out_service.LoginServie;
+import com.das.user.service.UserServie;
 import com.socks.library.KLog;
 import com.tencent.smtt.sdk.QbSdk;
 import com.tencent.smtt.sdk.TbsListener;
@@ -16,8 +16,6 @@ import okhttp3.OkHttpClient;
 public class UserBaseInitDo {
 
     public static void init(Application application) {
-
-
 
 
         QbSdk.setTbsListener(new TbsListener() {
@@ -62,11 +60,14 @@ public class UserBaseInitDo {
                 .build();
         AndroidNetworking.initialize(application.getApplicationContext(),okHttpClient);
 
+
+
+
         boolean homeOk = ServiceFactory.getInstance().getHomeService().isHomeOk();
         Dlog.d("homeok "+homeOk);
 
         NoSqlUtils.init(application);
-        ServiceFactory.getInstance().setLoginService(new LoginServie());
+        ServiceFactory.getInstance().setUserService(new UserServie());
 
     }
 }

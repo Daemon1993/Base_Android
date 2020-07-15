@@ -60,7 +60,7 @@ public class UserLoggingInterceptor implements Interceptor {
 
         KLog.d(TAG, "----------Request Start----------------");
         KLog.d(TAG,   request.url()+"   "+sb.toString());
-//        KLog.d(TAG, "| Response:" + content);
+        KLog.d(TAG, "| Response:" + content);
         KLog.d(TAG, "----------Request End:" + duration + "毫秒----------");
         return response;
     }

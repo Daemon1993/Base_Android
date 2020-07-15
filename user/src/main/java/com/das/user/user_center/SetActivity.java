@@ -20,6 +20,7 @@ import com.das.user.R;
 import com.das.user.RouteUtils;
 import com.das.user.databinding.UserActivityInviteUserBinding;
 import com.das.user.databinding.UserActivitySetBinding;
+import com.das.user.network.DasService;
 import com.das.user.nosql.NoSqlUtils;
 import com.jeremyliao.liveeventbus.LiveEventBus;
 import com.socks.library.KLog;
@@ -47,7 +48,7 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
         viewDataBinding.clServerXy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WebViewActivity.openActivity(SetActivity.this,"http://www.baidu.com");
+                WebViewActivity.openActivity(SetActivity.this, DasService.BASEURL+"/transition/provisions.html");
             }
         });
 

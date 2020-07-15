@@ -1,9 +1,12 @@
 package com.das.god_base.view;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -26,6 +29,7 @@ public abstract class BaseActivity extends RxAppCompatActivity {
     private boolean isDestory;
     private BaseLoadingDialog baseLoadingDialog;
     private BaseProgressDialog mProgressDialog1;
+    private AlertDialog dialog_confrim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,7 +143,16 @@ public abstract class BaseActivity extends RxAppCompatActivity {
         }
     }
 
+    public boolean isProgressLoading(){
+        return mProgressDialog1.isShowing();
+    }
+
     public void showProgressLoading(String msg){
+
+        if (isDestory) {
+            return;
+        }
+
         if (mProgressDialog1 == null) {
             mProgressDialog1 = new BaseProgressDialog(this, R.style.BaseDialog);
             mProgressDialog1.setCanceledOnTouchOutside(false);
@@ -147,6 +160,20 @@ public abstract class BaseActivity extends RxAppCompatActivity {
 
 
         mProgressDialog1.setLoadingTitle(msg);
+
+        mProgressDialog1.setOnKeyListener(new DialogInterface.OnKeyListener() {
+            @Override
+            public boolean onKey(DialogInterface dialogInterface, int keyCode, KeyEvent keyEvent) {
+                if (keyCode == KeyEvent.KEYCODE_BACK && keyEvent.getRepeatCount() == 0) {
+                    KLog.e(" mProgressDialog_upload 拦截 返回键");
+                    back();
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
+
         if (!mProgressDialog1.isShowing()) {
 
             mProgressDialog1.show();
@@ -198,7 +225,27 @@ public abstract class BaseActivity extends RxAppCompatActivity {
             e.printStackTrace();
         }
     }
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            System.out.println("按下了back键   onKeyDown()");
+            back();
+            return false;
+        } else {
+            return super.onKeyDown(keyCode, event);
+        }
+    }
+
     public void back() {
+
+
+        if (mProgressDialog1 !=null && mProgressDialog1.isShowing() ) {
+            showConfirmDialog();
+            return;
+        }
+
         finish();
     }
 
@@ -214,4 +261,51 @@ public abstract class BaseActivity extends RxAppCompatActivity {
 
 
     }
+
+
+
+    private   void showConfirmDialog() {
+        if (dialog_confrim == null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("任务处理中,确认退出？");
+            //点击对话框以外的区域是否让对话框消失
+            builder.setCancelable(false);
+            //设置正面按钮
+            builder.setPositiveButton("退出", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    hideLoading();
+                    back2();
+                }
+            });
+            //设置反面按钮
+            builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+
+            dialog_confrim = builder.create();
+            dialog_confrim.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                @Override
+                public boolean onKey(DialogInterface dialogInterface, int keyCode, KeyEvent keyEvent) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK && keyEvent.getRepeatCount() == 0) {
+                        KLog.e(" dialog 拦截 返回键");
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            });
+        }
+        //显示对话框
+        dialog_confrim.show();
+    }
+
+    public void back2() {
+        finish();
+    }
+
 }

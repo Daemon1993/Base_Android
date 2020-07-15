@@ -8,13 +8,10 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.widget.TextView;
 
 import com.das.god_base.R;
 
 import com.das.god_base.utils.ScreenUtils;
-
-import java.lang.reflect.Field;
 
 import androidx.appcompat.widget.AppCompatEditText;
 
@@ -77,7 +74,7 @@ public class LoginStyleEditText extends AppCompatEditText {
         // 2. 根据资源ID获取图标资源（转化成Drawable对象）
         ic_delete =  getResources().getDrawable(R.drawable.delete_click);
 
-        delete_size = ScreenUtils.dp2px(context, 20);
+        delete_size = ScreenUtils.dp2px(context, 16);
 
 
 
@@ -89,8 +86,8 @@ public class LoginStyleEditText extends AppCompatEditText {
         mPaint.setStrokeWidth(2.0f); // 分割线粗细
 
         // 2. 设置分割线颜色（使用十六进制代码，如#333、#8e8e8e）
-        int lineColorClick_default = context.getResources().getColor(R.color.base_gray0); // 默认 = 蓝色#1296db
-        int lineColorunClick_default = context.getResources().getColor(R.color.base_gray0); // 默认 = 灰色#9b9b9b
+        int lineColorClick_default = context.getResources().getColor(R.color.base_gray_bg); // 默认 = 蓝色#1296db
+        int lineColorunClick_default = context.getResources().getColor(R.color.base_gray_bg); // 默认 = 灰色#9b9b9b
         lineColor_click = typedArray.getColor(R.styleable.LoginstyleEditText_lineColor_click, lineColorClick_default);
         lineColor_unclick = typedArray.getColor(R.styleable.LoginstyleEditText_lineColor_unclick, lineColorunClick_default);
         color = lineColor_unclick;

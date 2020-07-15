@@ -85,6 +85,8 @@ public class WebViewActivity extends BaseActivity {
     @Override
     protected void initLazyAction() {
 
+        setLeftBack();
+        setTopTitle("服务条款与隐私协议");
     }
 
     @Override

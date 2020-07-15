@@ -17,6 +17,8 @@ import com.das.god_base.view.BaseActivity;
 import com.das.user.LoginActivity;
 import com.das.user.R;
 import com.das.user.databinding.UserActivityInviteUserBinding;
+import com.das.user.network.DasService;
+import com.das.user.utils.FileProviderUtils;
 import com.socks.library.KLog;
 import com.xuexiang.xqrcode.XQRCode;
 
@@ -31,7 +33,7 @@ public class InviteUserActivity extends BaseActivity {
     protected void initLazyAction() {
         setTopTitle("邀请好友");
         setLeftBack();
-        Bitmap build = XQRCode.newQRCodeBuilder("Daemon").build();
+        Bitmap build = XQRCode.newQRCodeBuilder(DasService.BASEURL+"/transition/index.html").build();
         viewDataBinding.ivCode.setImageBitmap(build);
 
         viewDataBinding.tvShare.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +76,7 @@ public class InviteUserActivity extends BaseActivity {
     private void realShare(String path) {
         KLog.e("realShare "+path);
         Intent intent=new Intent(Intent.ACTION_SEND);
-        Uri uri= Uri.fromFile(new File(path));
+        Uri uri= FileProviderUtils.getUriForFile(this,new File(path));
         intent.putExtra(Intent.EXTRA_STREAM,uri);
         intent.setType("image/*");
         startActivity(Intent.createChooser(intent,"share"));

@@ -20,6 +20,8 @@ import com.socks.library.KLog;
 
 import java.io.File;
 
+import javax.security.auth.callback.Callback;
+
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
@@ -28,6 +30,10 @@ import androidx.core.content.FileProvider;
  * 下载工具类（开发中一般用于APK应用升级）
  */
 public class LinDownloadAPk {
+
+    public interface ApkInstallCallback {
+        void callback();
+    }
 
     private static RemoteViews mNotifiviews;
 
@@ -38,7 +44,7 @@ public class LinDownloadAPk {
     /**
      * 判断8.0 安装权限
      */
-    public static void installApk(Context context, String apkPath) {
+    public static void installApk(Context context, String apkPath, ApkInstallCallback apkInstallCallback) {
         mContext = context;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) { //系统 Android O及以上版本
@@ -48,23 +54,15 @@ public class LinDownloadAPk {
                 installAppIntent(context, apkPath);
             } else {
 
-                startInstallPermissionSettingActivity();
+                if (apkInstallCallback != null) {
+                    apkInstallCallback.callback();
+                }
             }
         } else {  //直接安装流程
             installAppIntent(context, apkPath);
         }
 
 
-    }
-
-    /**
-     * 开启安装APK权限(适配8.0)
-     */
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static void startInstallPermissionSettingActivity() {
-        Uri packageURI = Uri.parse("package:" + mContext.getPackageName());
-        Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, packageURI);
-        mContext.startActivity(intent);
     }
 
 
@@ -80,7 +78,7 @@ public class LinDownloadAPk {
             return;
         }
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        Uri contentUri = getUriForFile(apkfile);
+        Uri contentUri = FileProviderUtils.getUriForFile(mContext, apkfile);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
@@ -90,19 +88,5 @@ public class LinDownloadAPk {
         context.startActivity(intent);
     }
 
-    /**
-     * 将文件转换成uri
-     *
-     * @return
-     */
-    public static Uri getUriForFile(File file) {
-        KLog.e(mContext.getPackageName());
-        Uri fileUri = null;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            fileUri = FileProvider.getUriForFile(mContext, mContext.getPackageName() + ".fileprovider", file);
-        } else {
-            fileUri = Uri.fromFile(file);
-        }
-        return fileUri;
-    }
+
 }

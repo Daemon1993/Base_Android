@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/base_white"
+        android:background="@color/base_white_bg"
         tools:context=".user_center.UpdatePwdActivity">
 
         <include layout="@layout/layout_top" />

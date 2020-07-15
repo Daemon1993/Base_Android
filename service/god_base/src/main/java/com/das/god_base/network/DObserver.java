@@ -57,7 +57,7 @@ public  abstract  class DObserver<T> implements Observer<T> {
             onException(ExceptionReason.SSL_ERROR);
 
         } else {
-            onException(ExceptionReason.UNKNOWN_ERROR);
+            onFail(e.getMessage()+"");
         }
         onFinish();
 

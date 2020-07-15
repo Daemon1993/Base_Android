@@ -13,7 +13,7 @@ public class HomeApplication extends BaseApp {
 
         ServiceFactory.getInstance().setHomeService(new HomeService());
 
-        HomeBaseInitDo.init(this);
+        HomeBaseInitDo.init(application);
     }
 
     @Override

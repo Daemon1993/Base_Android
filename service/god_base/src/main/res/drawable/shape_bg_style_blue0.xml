@@ -4,7 +4,7 @@
 
     <stroke
         android:width="@dimen/qb_px_1"
-        android:color="@color/base_blue00" />
+        android:color="@color/base_blue_bt0" />
 
     <corners android:radius="100dp" /><!-- 边角圆弧的半径 -->
 

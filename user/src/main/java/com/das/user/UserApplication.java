@@ -21,6 +21,7 @@ public class UserApplication extends BaseApp {
     @Override
     public void onCreate() {
         super.onCreate();
+        KLog.e("UserApplication onCreate");
         initModuleApp(this);
         initModuleData(this);
 
@@ -33,22 +34,24 @@ public class UserApplication extends BaseApp {
 
         KLog.init(true,"user_v1r1");
 
-        if (!isMainProcess()) {
-            String packageName = getPackageName();
+        if (!isMainProcess(application)) {
+            String packageName = application.getPackageName();
             KLog.d("AAA", packageName);
 
             return;
         }
 
+
         BaseInitGod.init(application);
-        KLog.e("UserApplication");
+        UserBaseInitDo.init(application);
+        KLog.e("UserApplication initModuleApp");
 
 
     }
 
     @Override
     public void initModuleData(Application application) {
-        UserBaseInitDo.init(this);
+
 
     }
 

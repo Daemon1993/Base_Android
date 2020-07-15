@@ -30,13 +30,13 @@
                 android:resource="@xml/user_file_paths" />
         </provider>
 
-        <activity android:name=".user_center.Splash2Activity"></activity>
+        <activity android:name="com.das.v1r1.Splash2Activity"></activity>
         <activity android:name=".user_center.UpdatePwdActivity" />
         <activity android:name=".user_center.AboutActivity" />
         <activity android:name=".user_center.SetActivity" />
         <activity android:name=".user_center.InviteUserActivity" />
         <activity
-            android:name=".SplashActivity"
+            android:name="com.das.v1r1.SplashActivity"
             android:theme="@style/user_SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
